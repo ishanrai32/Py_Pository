@@ -1,0 +1,40 @@
+We begin by importing the pygame module.  Next we define some constants. The first constant defines the screen dimensions.
+Then, we have constants that define the dimensions of the paddle, ball and bricks. After that, we define constants that 
+specify the maximum X coordinate for the ball and paddle.  These constants will be used later to enforce the paddle and 
+ball stay inside the screen. Finally, we define color and state constants.We have encapsulated the game code inside the 
+Bricka class. In the constructor, firstly, we initialize the pygame modules. Next, we create the game window and we set a 
+title for it. Next we create a clock object that will be used later to lock our frame rate to a constant value. Next, we 
+create a font object, only if the font module is available.  This object will be used later to draw text in the screen. 
+Finally, we call the init_game() function. This function is described below.
+
+In the init_game() function we reset some variables. We start with 3 lives, score 0, and state set to STATE_BALL_IN_PADDLE.
+Next we define the rectangles for the paddle and ball. We will, later, use these rectangles for movement, drawing, and for
+collision detection. Then, we initialize the ball velocity, setting it to go up-right. Finally, we call the create_bricks()
+function that will create the bricks. The bricks are maintained in a list.
+The check_input() function handles keyboard input. Firstly, we get a list with the states of all keys. After that, if the 
+LEFT arrow key is pressed we move the paddle left. Likewise, if the RIGHT arrow key is pressed we move the paddle right. 
+During the movement, we make sure the paddle stays inside the screen. Then, if the SPACE key is pressed while we are in 
+state Ball in Paddle, we change the velocity to make it go up-right and change the state to Playing. This causes the ball 
+to be launched. Finally, if the ENTER key is pressed while in the game over or won states, we call init_game() to restart 
+the game.
+
+The move_ball() functions takes care of moving the ball. First, it updates the position coordinates adding the velocity 
+components. After that, it checks if the ball hit the left or right screen border. If true, the X velocity component is 
+inverted making it bounce. Finally, it checks if the ball hit the top border, inverting the Y velocity component, if true.
+The handle_collisions() function determines if the ball collided with a brick, the paddle, or has fallen to the ground. 
+First, it checks if the ball has collided with a brick. If true, it increments the score by 3 units and removes the brick 
+from the brick list. After making the brick collision test, it checks if there are remaining bricks. If not, it changes 
+the state to Won. Finally, it checks if the ball hit the paddle. If true, the ball is repositioned so that is right above 
+the paddle and the Y velocity component is inverted.  Otherwise, it checks if the ball is below the paddle (going to the 
+ground), and if true, decreases the life count. If the count drops to zero, it changes the state to Ball in paddle. 
+Otherwise, changes the state to Ball in paddle.
+
+The show_stats() shows score and life info while show_message() is used to show game state related messages.
+This is the game loop. First, we handle the window events. If a request to quit the application exists, we do quit the 
+application. After handling the events, we use the clock object to lock the frame rate to 50 FPS. Then, we handle keyboard
+input. After that, the next action depends on the game state. If we are in Playing state, we move the ball calling 
+move_ball(), and handle collisions calling handle_collisions(). Otherwise, we print a message with instructions. In state 
+Ball in paddle we ensure the ball is glued to the paddle. After that, we draw the paddle, the ball, and display the score 
+and lives text. Finally, we call pygame.display.flip() to display everything that has been drawn in the frame.
+Finally, the last piece of code creates an instance of the game class and runs it. It makes sure the file is run directly and 
+not imported from a module.
