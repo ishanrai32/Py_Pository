@@ -29,5 +29,4 @@ After obtaining the csv file, I then developed an XGB model to predict Modal Pri
 
 Contributors names and contact info
 
-ex. Ishan Rai  
-ex. [@ishan-rai](https://www.linkedin.com/in/ishan-rai/)
+Ishan Rai - [@ishan-rai](https://www.linkedin.com/in/ishan-rai/)
