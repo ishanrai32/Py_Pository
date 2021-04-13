@@ -11,7 +11,7 @@ The URL given above contains prices of various commodities across different stat
 a web scraper that can download tabular information for Tomato prices in Karnataka from Jan-01-
 2015 to Feb-01-2021. 
 
-After obtaining the csv file, I then developed an XGB model to predict Modal Price for different locations.
+After obtaining the CSV file, I then developed an XGB model to predict Modal Price for different locations.
 
 ## Getting Started
 
