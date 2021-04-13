@@ -1,6 +1,6 @@
 # Predicting tomato prices from web-scraped data
 
-The project focuses on programming a web scraper to extract data in a csv format and
+The project focuses on programming a web scraper to extract data in a CSV format and
 consequently modeling an ML program to predict prices of Tomatoes.
 
 ## Description
@@ -23,7 +23,14 @@ After obtaining the CSV file, I then developed an XGB model to predict Modal Pri
 ### Executing program
 
 * The web scraper was run locally as selenium requires a web browser in order to scrape data.
-* The XGB model was trained on Colab after uploading Agr
+* The XGB model was trained on Colab after uploading Agri_data on Colab.
+
+### File details
+
+* web-scraper.ipynb : Contains the code for the web scraper.
+* xgb_model.ipynb : Contains the code for the XGB model training.
+* Agri_data.csv : Web scraped agricultural data in CSV format.
+* output.csv : Predicted and actual modal prices on the test set.
 
 ## Authors
 
