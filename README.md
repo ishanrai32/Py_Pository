@@ -4,7 +4,7 @@ projects.
 
 ## Getting Started
 Descriptions of each project are given briefly here. For an in-depth description, check the respective directories.
-* **Cryptography/Project** : Implementation of homomorphic encryption on simple computations like addition and multiplication. Future work includes implementation of the same in privacy-preserving machine learning.
+* *Cryptography/Project* : Implementation of homomorphic encryption on simple computations like addition and multiplication. Future work includes implementation of the same in privacy-preserving machine learning.
 * GNN applied for NLP: Ongoing project to classify companies based on their descriptions using NLP, Knowledge Graphs and GNN.
 * Notebooks : Random notebooks that have practice work and prototypes.
 * Predicting Prices from scraped web data : Implemented web-automated scraping in Selenium and XGBoost model to predict Tomato prices in Karnataka.
