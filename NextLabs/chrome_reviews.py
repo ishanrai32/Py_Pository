@@ -11,6 +11,7 @@ from textblob import TextBlob
 lemmatizer = WordNetLemmatizer()
 
 import nltk
+nltk.download('omw-1.4')
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
