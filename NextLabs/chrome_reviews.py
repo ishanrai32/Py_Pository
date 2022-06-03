@@ -10,7 +10,7 @@ from nltk.stem import WordNetLemmatizer
 from textblob import TextBlob
 lemmatizer = WordNetLemmatizer()
 
-%pip install nltk
+!pip install nltk
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
