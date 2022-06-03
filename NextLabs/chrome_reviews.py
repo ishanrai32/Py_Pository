@@ -22,10 +22,10 @@ stop_words.remove('not')
 stop_words.remove('no')
 
 # read in the data for running the code on it
-data = pd.read_csv("chrome_reviews.csv")
+# data = pd.read_csv("chrome_reviews.csv")
 uploaded_file = st.file_uploader("Choose a file in csv format as input")
 if uploaded_file is not None:
-  df = pd.read_csv(uploaded_file)
+  data = pd.read_csv(uploaded_file)
   st.write(dataframe)
 
 # clean text by removing stopwords, lemmatizing data, removing leading and trailing whitespaces
@@ -65,4 +65,5 @@ positive_review_with_1_star = Single_star_reviews[Single_star_reviews.sentiment 
 positive_review_with_1_star.drop("cleaned_review",axis = 1,inplace=True)
 
 # giving output
-positive_review_with_1_star.to_csv('output.csv')
+# positive_review_with_1_star.to_csv('output.csv')
+st.write(positive_review_with_1_star)
