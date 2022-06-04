@@ -34,7 +34,7 @@ st.markdown('6.   Return rows that have 1 star rating and Positive review.')
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
-  st.write(data)
+  st.dataframe(data)
 
 # clean text by removing stopwords, lemmatizing data, removing leading and trailing whitespaces
 clean_text =[]
