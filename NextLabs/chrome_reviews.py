@@ -25,7 +25,7 @@ stop_words.remove('no')
 # read in the data for running the code on it
 st.title("Chrome reviews")
 st.header("Upload csv file in chrome_reviews format")
-st.markdown('This application takes csv input from the user in chrome_reviews format. It outputs reviews that were positive in sentiment but had 1-star rating.'
+st.markdown('This application takes csv input from the user in chrome_reviews format. It outputs reviews that were positive in sentiment but had 1-star rating.')
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
