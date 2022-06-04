@@ -76,4 +76,5 @@ if uploaded_file is not None:
   # positive_review_with_1_star.to_csv('output.csv')
   st.header("Reviews with positive text and 1-star ratings")
   st.write(positive_review_with_1_star)
-  st.download_button(label = 'Download the output file', data = positive_review_with_1_star, file_name = 'positive_review_with_1_star.csv', mime = 'csv')
+  csv_output = positive_review_with_1_star.to_csv().encode('utf-8')
+  st.download_button(label = 'Download the output file', data = csv_output, file_name = 'positive_review_with_1_star.csv', mime = 'text/csv')
