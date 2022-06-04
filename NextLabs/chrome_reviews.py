@@ -25,17 +25,18 @@ stop_words.remove('no')
 # read in the data for running the code on it
 st.title("Chrome reviews")
 st.header("Upload csv file in chrome_reviews format")
-st.markdown('1.   Import libraries. Pick a pre-trained model for sentiment analysis.')
-st.markdown('2.   Remove stopwords. Exclude *no* and *not* as these have meaning in the reviews.')
-st.markdown('3.   Cleaning the text further by lemmatization and keeping a uniform lower case with leading, trailing whitespaces removed.')
-st.markdown('4.   Filter out rows with 1 star rating. Apply the Sentiment Analyzer on the reviews of these rows.')
-st.markdown('5.   If positivity score > 0.7, the review is considered to be positive.')
-st.markdown('6.   Return rows that have 1 star rating and Positive review.')
+st.markdown('This application takes csv input from the user in chrome_reviews format. It outputs reviews that were positive in sentiment but had 1-star rating.'
+
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
   st.write(data)
-
+  st.markdown('1.   Import libraries. Pick a pre-trained model for sentiment analysis.')
+  st.markdown('2.   Remove stopwords. Exclude *no* and *not* as these have meaning in the reviews.')
+  st.markdown('3.   Cleaning the text further by lemmatization and keeping a uniform lower case with leading, trailing whitespaces removed.')
+  st.markdown('4.   Filter out rows with 1 star rating. Apply the Sentiment Analyzer on the reviews of these rows.')
+  st.markdown('5.   If positivity score > 0.7, the review is considered to be positive.')
+  st.markdown('6.   Return rows that have 1 star rating and Positive review.')
   # clean text by removing stopwords, lemmatizing data, removing leading and trailing whitespaces
   clean_text =[]
   for review in data['Text']:
