@@ -23,8 +23,9 @@ stop_words.remove('not')
 stop_words.remove('no')
 
 # read in the data for running the code on it
-# data = pd.read_csv("chrome_reviews.csv")
-uploaded_file = st.file_uploader("Choose a file in csv format as input")
+st.title("Chrome reviews")
+st.header("Upload csv file in chrome_reviews format")
+uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
   st.write(data)
@@ -34,7 +35,7 @@ clean_text =[]
 for review in data['Text']:
     review= re.sub(r'[^\w\s]', '', str(review))
     review = re.sub(r'\d','',review)
-    review_token = word_tokenize(review.lower().strip()) #convert reviews into lower case and strip leading and tailing spaces followed by spliting sentnece into words
+    review_token = word_tokenize(review.lower().strip()) #convert reviews into lower case and strip leading and tailing spaces followed by spliting sentence into words
     review_without_stopwords=[]
     for token in review_token:
         if token not in stop_words:
@@ -67,4 +68,5 @@ positive_review_with_1_star.drop("cleaned_review",axis = 1,inplace=True)
 
 # giving output
 # positive_review_with_1_star.to_csv('output.csv')
+st.heading("Reviews with positive text and 1-star ratings")
 st.write(positive_review_with_1_star)
