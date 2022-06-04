@@ -68,5 +68,5 @@ positive_review_with_1_star.drop("cleaned_review",axis = 1,inplace=True)
 
 # giving output
 # positive_review_with_1_star.to_csv('output.csv')
-st.heading("Reviews with positive text and 1-star ratings")
+st.header("Reviews with positive text and 1-star ratings")
 st.write(positive_review_with_1_star)
