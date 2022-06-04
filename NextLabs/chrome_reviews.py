@@ -36,43 +36,44 @@ if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
   st.write(data)
 
-# clean text by removing stopwords, lemmatizing data, removing leading and trailing whitespaces
-clean_text =[]
-for review in data['Text']:
-    review= re.sub(r'[^\w\s]', '', str(review))
-    review = re.sub(r'\d','',review)
-    review_token = word_tokenize(review.lower().strip()) #convert reviews into lower case and strip leading and tailing spaces followed by spliting sentence into words
-    review_without_stopwords=[]
-    for token in review_token:
-        if token not in stop_words:
-            token= lemmatizer.lemmatize(token)
-            review_without_stopwords.append(token)
-    cleaned_review = " ".join(review_without_stopwords)
-    clean_text.append(cleaned_review)
+  # clean text by removing stopwords, lemmatizing data, removing leading and trailing whitespaces
+  clean_text =[]
+  for review in data['Text']:
+      review= re.sub(r'[^\w\s]', '', str(review))
+      review = re.sub(r'\d','',review)
+      review_token = word_tokenize(review.lower().strip()) #convert reviews into lower case and strip leading and tailing spaces followed by spliting sentence into words
+      review_without_stopwords=[]
+      for token in review_token:
+          if token not in stop_words:
+              token= lemmatizer.lemmatize(token)
+              review_without_stopwords.append(token)
+      cleaned_review = " ".join(review_without_stopwords)
+      clean_text.append(cleaned_review)
     
-# assign cleaned reviews and filter out 1 star rated apps
-data["cleaned_review"] = clean_text
-Single_star_reviews = data[data.Star == 1]
+  # assign cleaned reviews and filter out 1 star rated apps
+  data["cleaned_review"] = clean_text
+  Single_star_reviews = data[data.Star == 1]
 
-# run sentiment analysis on the reviews and assign one of Positive or Negative/Neutral depending on the positivity score of sentiment
-sia = SentimentIntensityAnalyzer()
-senti_list = []
+  # run sentiment analysis on the reviews and assign one of Positive or Negative/Neutral depending on the positivity score of sentiment
+  sia = SentimentIntensityAnalyzer()
+  senti_list = []
 
-for i in Single_star_reviews["cleaned_review"]:
-    score = sia.polarity_scores(i)
-    blob_score = TextBlob(i).sentiment.polarity
-    if (score['pos'] >= 0.7):
-        senti_list.append('Positive')
-    else:
-        senti_list.append('Negative/Neutral')
+  for i in Single_star_reviews["cleaned_review"]:
+      score = sia.polarity_scores(i)
+      blob_score = TextBlob(i).sentiment.polarity
+      if (score['pos'] >= 0.7):
+          senti_list.append('Positive')
+      else:
+          senti_list.append('Negative/Neutral')
         
-Single_star_reviews["sentiment"]= senti_list
+  Single_star_reviews["sentiment"]= senti_list
 
-# filtering out data with 1 star rating and positive review
-positive_review_with_1_star = Single_star_reviews[Single_star_reviews.sentiment == 'Positive']
-positive_review_with_1_star.drop("cleaned_review",axis = 1,inplace=True)
+  # filtering out data with 1 star rating and positive review
+  positive_review_with_1_star = Single_star_reviews[Single_star_reviews.sentiment == 'Positive']
+  positive_review_with_1_star.drop("cleaned_review",axis = 1,inplace=True)
 
-# giving output
-# positive_review_with_1_star.to_csv('output.csv')
-st.header("Reviews with positive text and 1-star ratings")
-st.write(positive_review_with_1_star)
+  # giving output
+  # positive_review_with_1_star.to_csv('output.csv')
+  st.header("Reviews with positive text and 1-star ratings")
+  st.write(positive_review_with_1_star)
+  st.download_button(label = 'Download the output file', data = positive_review_with_1_star, file_name = 'positive_review_with_1_star.csv', mime = 'csv')
