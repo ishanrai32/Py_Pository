@@ -31,6 +31,7 @@ uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
   st.write(data)
+  st.subheading('Functioning of the code is as follows:')
   st.markdown('1.   Import libraries. Pick a pre-trained model for sentiment analysis.')
   st.markdown('2.   Remove stopwords. Exclude *no* and *not* as these have meaning in the reviews.')
   st.markdown('3.   Cleaning the text further by lemmatization and keeping a uniform lower case with leading, trailing whitespaces removed.')
