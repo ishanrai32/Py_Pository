@@ -63,7 +63,7 @@ if check_password():
       st.markdown('2.   Remove stopwords. Exclude *no* and *not* as these have meaning in the reviews.')
       st.markdown('3.   Cleaning the text further by lemmatization and keeping a uniform lower case with leading, trailing whitespaces removed.')
       st.markdown('4.   Filter out rows with 1 star rating. Apply the Sentiment Analyzer on the reviews of these rows.')
-      st.markdown('5.   If positivity score > 0.7, the review is considered to be positive.')
+      st.markdown('5.   If positivity score > 0.6, the review is considered to be positive.')
       st.markdown('6.   Return rows that have 1 star rating and Positive review.')
       # clean text by removing stopwords, lemmatizing data, removing leading and trailing whitespaces
       clean_text =[]
@@ -90,7 +90,7 @@ if check_password():
       for i in Single_star_reviews["cleaned_review"]:
           score = sia.polarity_scores(i)
           blob_score = TextBlob(i).sentiment.polarity
-          if (score['pos'] >= 0.7):
+          if (score['pos'] >= 0.6):
               senti_list.append('Positive')
           else:
               senti_list.append('Negative/Neutral')
